@@ -23,7 +23,7 @@ session_start();
             <div class="mx-1 mt-1 card rounded">
                 <div class="card-body">
                     <form action="upload.php" method="post" enctype="multipart/form-data" class="form-signin">
-                        <h1 class="h3 mb-3 font-weight-normal">Please verify</h1>
+                        <h1 class="h3 mb-3 font-weight-normal">Upload A File</h1>
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required>
                         <label class="btn btn-primary btn-block">

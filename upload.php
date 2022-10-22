@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST["submit"])) {
     $str =  "<script>$('#retval').html('";
-    if ($_POST['pwd'] == 'YOUR_PASSWORD_HERE') {
+    if ($_POST['pwd'] == 'Password123') { // CHANGE THE PASSWORD
         $target_dir    = "uploads/";
         $target_file   = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk      = 1;
@@ -13,11 +13,16 @@ if (isset($_POST["submit"])) {
             $uploadOk = 0;
         }
         // Allow certain file formats
-        //if($FileType != "json" && $FileType != "txt" && $FileType != "html"
-        //&& $FileType != "pdf" ) {
-        //    echo "Sorry, only xlsx,xls,and csv files are allowed.";
-        //    $uploadOk = 0;
-        //}
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" // you can replace this with something
+        && $imageFileType != "gif" ) {
+          echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed."; // this too
+          $uploadOk = 0;
+        }
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 5000000) { // you can replace 5000000 with any bytes
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $str .= "Sorry, your file was not uploaded.";
@@ -30,7 +35,7 @@ if (isset($_POST["submit"])) {
             }
         }
     } else {
-        $str .= "Invalid key";
+        $str .= "Wrong Password";
     }
     $str .= "');</script>";
     $_SESSION['message'] = $str;
